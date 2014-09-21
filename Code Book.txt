@@ -1,0 +1,24 @@
+The data used in this work was originally obtained from the location here:
+	https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+
+
+The original data was split into two groups, train and test.  The files contained data in the following way:
+	x 		- 	the actual raw data
+	y 		- 	the activity being performed (ID only)
+	features 	- 	the metric being recorded 
+	activities	-	map of activity ID to description
+
+
+
+The following steps were taken with the data:
+	1. Combine x_train, y_train, subject_train with x_test, y_test, subject_test, respectively
+	2. Add some meaningful column names: activityID to y, subjectID to subjects, features to x.  Features can be found in its own txt file called features.txt.
+	3. Combine the above three sets into one
+	4. Determine which features contain information about mean and std.  This was open to some interpretation.  However, after examining the feature names I felt that those features which contained mean() and std() were the ones we were interested in.
+	5. Remove all columns without mean() or std() in their feature name
+	6. Replace the activityID with a descriptive activity name, as found in activity_labels.txt
+	7. Melt the data to transform it to a long dataset instead of wide
+	8. Use SQL to compute the mean of each feature, for each subject and each activity
+	9. Store the resulting dataset in a variable called final_data
+
